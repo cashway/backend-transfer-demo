@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_account, only: %i[ show update destroy ]
 
   # GET /accounts
@@ -14,7 +15,7 @@ class AccountsController < ApplicationController
   end
 
   def balance
-    @account = Account.find(params[:id])
+    @account = Account.find_by(user: @current_user)
     render json: { balance: @account.balance }
   end
 

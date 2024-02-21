@@ -7,17 +7,17 @@ class OrdersController < ApplicationController
     if @order.save
       render json: @order, status: :created
     else
-      render json:{ message: 'Conta não encontrada' }, status: :unprocessable_entity
+      render json: @order.errors, status: :unprocessable_entity
     end
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = Order.find_by(user: @current_user, id: params[:id])
     render json: @order
   end
 
   def index
-    @orders = Order.all
+    @orders = Order.where(user: @current_user)
     render json: @orders
   end
 

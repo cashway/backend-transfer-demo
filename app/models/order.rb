@@ -3,7 +3,8 @@ class Order < ActiveRecord::Base
   validates :favored_account, presence: true
   validates :amount, presence: true
   validates :amount, numericality: { greater_than: 0 }
-  validate :check_balance, on: :create
+  validate :balance, on: :create
+  validate :favored, on: :create
   after_commit :update_balance, on: :create
 
   private
@@ -14,7 +15,12 @@ class Order < ActiveRecord::Base
     favored.update(balance: favored.balance + amount) if favored
   end
 
-  def check_balance
-    errors.add(:amount, "Insufficient balance") if user.account.balance < amount
+  def balance
+    errors.add(:error, "Insufficient balance") if user.account.balance < amount
+  end
+
+  def favored
+    errors.add(:error, "Favored account is the same as the user's account") if user.account.number == favored_account
+    errors.add(:error, "Favored account does not exist") unless Account.find_by(number: favored_account)
   end
 end
