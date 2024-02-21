@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module BackendTransferDemo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.1
+    config.load_defaults 7.0
 
     config.autoload_paths << Rails.root.join("lib")
     config.session_store :cookie_store, key: '_backend_transfer_demo_session'
