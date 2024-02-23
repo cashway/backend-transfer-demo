@@ -1,0 +1,283 @@
+swagger: '2.0'
+info:
+  title: API V1
+  version: v1
+paths:
+  /auth/sign_in:
+    post:
+      tags:
+        - Authentication
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: email
+          in: formData
+          type: string
+          required: true
+        - name: password
+          in: formData
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful sign-in response
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  email:
+                    type: string
+                  provider:
+                    type: string
+                  uid:
+                    type: string
+                  id:
+                    type: integer
+                  allow_password_change:
+                    type: boolean
+                  name:
+                    type: string
+        '401':
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: string
+  /auth:
+    post:
+      tags:
+        - Create User
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: name
+          in: formData
+          type: string
+          required: true
+        - name: email
+          in: formData
+          type: string
+          required: true
+        - name: password
+          in: formData
+          type: string
+          required: true
+        - name: password_confirmation
+          in: formData
+          type: string
+          required: true
+        - name: confirm_success_url
+          in: formData
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful sign-up response
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  email:
+                    type: string
+                  provider:
+                    type: string
+                  uid:
+                    type: string
+                  id:
+                    type: integer
+                    format: int64
+                  allow_password_change:
+                    type: boolean
+                    default: false
+                    description: 'Indicates if the user can change their password'
+                  name:
+                    type: string
+        '422':
+          description: Unprocessable Entity
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: string
+  /orders:
+    post:
+      tags: 
+        - Create Order
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: uid
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: client
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: access_token
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: Content-Type
+          schema:
+            type: string
+          required: true
+        - in: body
+          name: order
+          description: Order to be created
+          schema:
+            type: object
+            properties:
+              order:
+                type: object
+                required:
+                  - favored_account
+                  - amount
+                properties:
+                  favored_account:
+                    type: string
+                  amount:
+                    type: number
+    get:
+      tags:
+        - Consult user orders
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: uid
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: client
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: access_token
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful orders response
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                    favored_account:
+                      type: string
+                    amount:
+                      type: number
+                    created_at:
+                      type: string
+                      format: date-time
+        '401':
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: string
+  /accounts/balance:
+    get:
+      tags:
+        - Account
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: uid
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: client
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: access_token
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful balance response
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  balance:
+                    type: number
+        '401':
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: string
+        '500':
+          description: Internal Server Error
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: string
