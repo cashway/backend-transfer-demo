@@ -12,18 +12,18 @@ Aplicação Rails API de transferências internas.
 
 ## Requisitos
 
-### Usuário
+#### Usuário
  - Deve possuir nome;
  - Deve conseguir criar sessão no sistema por email e senha;
  - Pode realizar tranferências para outros usuários;
  - Deve possuir uma conta;
 
-### Conta
+#### Conta
  - Deve pertencer a um usuário;
  - Deve possuir saldo;
  - Saldo da conta deve ser igual ou superior a R$ 0,00;
 
-## Ordem
+#### Ordem
  - Deve ser realizada por um usuário pagador;
  - Deve ser enviada para um usuário favorecido;
  - Usuário pagador deve possuir em saldo em conta do mesmo valor ou superior ao valor da transferência;
