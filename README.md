@@ -29,3 +29,6 @@ Aplicação Rails API de transferências internas.
  - Deve ser realizada por um usuário pagador;
  - Deve ser enviada para um usuário favorecido;
  - Usuário pagador deve possuir em saldo em conta do mesmo valor ou superior ao valor da transferência;
+ - Deve armazenar o número da conta do favorecido do pagamento;
+ - Ao realizar a transferência, o saldo da conta do usuário pagador deve ser debitado o valor da transferência;
+ - Ao realizar a transferência, o saldo da conta do usuário recebedor deve ser creditado com o valor da transferência;
