@@ -23,6 +23,7 @@ Aplicação Rails API de transferências internas.
  - Deve pertencer a um usuário;
  - Deve possuir saldo;
  - Saldo da conta deve ser igual ou superior a R$ 0,00;
+ - Deve possuir um número de indentificação;
 
 #### Ordem
  - Deve ser realizada por um usuário pagador;
