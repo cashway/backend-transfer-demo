@@ -6,7 +6,7 @@ Aplicação Rails API de transferências internas.
 
 ## Atores
 
-- **User**: Usuário do sistema que possui uma conta e realiza transferências;  
+- **User**: Usuário do correntista que possui uma conta e realiza transferências;  
 - **Account**: A conta registra o saldo que o usuário possui no sistema;
 - **Order**: Representação de uma transação realizada entre dois usuário;
 
@@ -17,6 +17,7 @@ Aplicação Rails API de transferências internas.
  - Deve conseguir criar sessão no sistema por email e senha;
  - Pode realizar tranferências para outros usuários;
  - Deve possuir uma conta;
+ - Pode realizar consulta de saldo;
 
 #### Conta
  - Deve pertencer a um usuário;
