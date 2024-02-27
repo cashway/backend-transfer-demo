@@ -11,12 +11,19 @@ Aplicação Rails API de transferências internas.
 - **Order**: Representação de uma transação realizada entre dois usuário;
 
 ## Requisitos
-- Uma rota para login utilizando;
-- Uma rota para criar uma ordem;
-- Uma rota para consulta do saldo;
-- Uma rota consulta das ordens;
 
-## Restrições
-- Usuário:  nome, email e senha são obrigatórios;
-- Conta: número obrigatório, obrigatório pertencer a um usuário;
-- Ordem: valor deve ser maior que zero, conta do pagador é obrigatória, conta do recebedor é obrigratória e deve  pertencer ao usuário que inicio a transação. 
+### Usuário
+ - Deve possuir nome;
+ - Deve conseguir criar sessão no sistema por email e senha;
+ - Pode realizar tranferências para outros usuários;
+ - Deve possuir uma conta;
+
+### Conta
+ - Deve pertencer a um usuário;
+ - Deve possuir saldo;
+ - Saldo da conta deve ser igual ou superior a R$ 0,00;
+
+## Ordem
+ - Deve ser realizada por um usuário pagador;
+ - Deve ser enviada para um usuário favorecido;
+ - Usuário pagador deve possuir em saldo em conta do mesmo valor ou superior ao valor da transferência;
