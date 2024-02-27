@@ -18,6 +18,10 @@ Aplicação Rails API de transferências internas.
  - Pode realizar tranferências para outros usuários;
  - Deve possuir uma conta;
  - Pode realizar consulta de saldo;
+ - Pode realizar consulta de transações;
+ - Usuário deve estar logado para acessar informações da conta;
+ - Usuário deve estar logado para acessar informações das transações;
+ - Usuário deve estar logado para realizar transações;
 
 #### Conta
  - Deve pertencer a um usuário;
