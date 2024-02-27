@@ -1,24 +1,14 @@
-# README
+# Backend Transfer Demo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Descrição
 
-Things you may want to cover:
+Aplicação Rails API de transferências internas.
 
-* Ruby version
+## Atores
 
-* System dependencies
+- **User**: Usuário do sistema que possui uma conta e realiza transferências;  
+- **Account**: A conta registra o saldo que o usuário possui no sistema;
+- **Order**: Representação de uma transação realizada entre dois usuário;
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Requisitos
+ - 
